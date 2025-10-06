@@ -1,23 +1,23 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 
 use CentralAuth\OAuth2\Client\Provider\CentralAuth; // custom provider
 
 // Load configuration
-$config = require 'config.php';
+$config = require '../../config.php';
 
 // Check if we have the required parameters
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
   $_SESSION['error'] = 'OAuth callback missing required parameters';
-  header('Location: index.php');
+  header('Location: ../../index.php');
   exit;
 }
 
 // Verify the state parameter to prevent CSRF attacks
 if (!isset($_SESSION['oauth_state']) || $_GET['state'] !== $_SESSION['oauth_state']) {
   $_SESSION['error'] = 'Invalid OAuth state parameter';
-  header('Location: index.php');
+  header('Location: ../../index.php');
   exit;
 }
 
@@ -83,7 +83,7 @@ try {
       if (!isset($parts['scheme']) && !isset($parts['host'])) {
         // Relative path -> make absolute
         $path = $parts['path'] ?? '/';
-        if ($path === '/callback.php') {
+        if ($path === '/api/auth/callback') {
           $path = '/';
         }
         if ($path && $path[0] !== '/') {
@@ -118,6 +118,6 @@ try {
   exit;
 } catch (Exception $e) {
   $_SESSION['error'] = 'OAuth callback failed: ' . $e->getMessage();
-  header('Location: index.php');
+  header('Location: ../../index.php');
   exit;
 }

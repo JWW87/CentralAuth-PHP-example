@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 
 use CentralAuth\OAuth2\Client\Provider\CentralAuth; // custom provider
 
 // Load configuration
-$config = require 'config.php';
+$config = require '../../config.php';
 
 try {
   // Capture desired return URL (page where user started login)
@@ -114,6 +114,6 @@ try {
   exit;
 } catch (Exception $e) {
   $_SESSION['error'] = 'OAuth initialization failed: ' . $e->getMessage();
-  header('Location: index.php');
+  header('Location: ../../index.php');
   exit;
 }

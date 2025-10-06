@@ -2,6 +2,8 @@
 
 A minimal OAuth 2.0 Authorization Code flow test harness using a custom `CentralAuth` provider (extends `league/oauth2-client`).
 
+For complete CentralAuth configuration and API documentation, visit: **[https://docs.centralauth.com](https://docs.centralauth.com)**
+
 ## Features
 - Authorization Code + PKCE
 - Custom CentralAuth provider with POST userinfo retrieval

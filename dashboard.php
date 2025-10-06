@@ -161,7 +161,7 @@ $user = $_SESSION['user'];
     <h1>CentralAuth Dashboard</h1>
     <div class="nav-buttons">
       <a href="index.php">Home</a>
-      <a href="logout.php" class="logout">Logout</a>
+      <a href="api/auth/logout" class="logout">Logout</a>
     </div>
   </div>
 
