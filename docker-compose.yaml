@@ -1,9 +1,9 @@
 version: '3.8'
 services:
   web:
-    image: php:8.1-apache
+    image: php:8.4-apache
     ports:
-      - "80:80"
+      - "3000:3000"
     volumes:
       - .:/var/www/html
     command: |
