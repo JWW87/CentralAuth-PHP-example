@@ -1,0 +1,4 @@
+services:
+  web:
+    type: php-apache
+    htaccess: true

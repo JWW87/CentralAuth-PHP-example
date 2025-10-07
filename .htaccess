@@ -1,5 +1,3 @@
-INVALID_DIRECTIVE_TEST
-
 RewriteEngine On
 
 # Handle API auth routes
