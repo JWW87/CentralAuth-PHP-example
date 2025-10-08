@@ -48,16 +48,10 @@ try {
   $accessToken = $provider->getAccessToken('authorization_code', $tokenParams);
 
   // Use provider resource owner (internally handles POST pattern)
-  try {
-    $resourceOwner = $provider->getResourceOwner($accessToken);
-    $userData = $resourceOwner->toArray();
-    if (!isset($userData['email'])) {
-      throw new Exception('Invalid user info response: missing email');
-    }
-  } catch (Exception $e) {
-    error_log('Failed to fetch user info from CentralAuth: ' . $e->getMessage());
-    $userData = [];
-  }
+  $resourceOwner = $provider->getResourceOwner($accessToken);
+  $userData = $resourceOwner->toArray();
+  if (!isset($userData['email']))
+    throw new Exception('Invalid user info response: missing email');
 
   // Store user data in session
   $_SESSION['user'] = $userData;
