@@ -10,5 +10,5 @@ session_start();
 $_SESSION['success'] = 'Successfully logged out!';
 
 // Redirect to homepage
-header('Location: ../../index.php');
+header('Location: index.php');
 exit;

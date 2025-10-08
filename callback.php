@@ -1,23 +1,23 @@
 <?php
 session_start();
-require_once '../../vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use CentralAuth\OAuth2\Client\Provider\CentralAuth; // custom provider
 
 // Load configuration
-$config = require '../../config.php';
+$config = require 'config.php';
 
 // Check if we have the required parameters
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
   $_SESSION['error'] = 'OAuth callback missing required parameters';
-  header('Location: ../../index.php');
+  header('Location: index.php');
   exit;
 }
 
 // Verify the state parameter to prevent CSRF attacks
 if (!isset($_SESSION['oauth_state']) || $_GET['state'] !== $_SESSION['oauth_state']) {
   $_SESSION['error'] = 'Invalid OAuth state parameter';
-  header('Location: ../../index.php');
+  header('Location: index.php');
   exit;
 }
 
@@ -71,44 +71,8 @@ try {
 
   $_SESSION['success'] = 'Successfully logged in with CentralAuth!';
 
-  // Determine post-login return URL (prefer absolute)
-  $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-  $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-  $origin = $scheme . '://' . $host;
-  $returnUrl = null;
-  if (isset($_GET['return_to'])) {
-    $candidate = rawurldecode($_GET['return_to']);
-    $parts = @parse_url($candidate);
-    if ($parts) {
-      if (!isset($parts['scheme']) && !isset($parts['host'])) {
-        // Relative path -> make absolute
-        $path = $parts['path'] ?? '/';
-        if ($path === '/api/auth/callback') {
-          $path = '/';
-        }
-        if ($path && $path[0] !== '/') {
-          $path = '/' . $path;
-        }
-        $abs = $origin . $path;
-        if (!empty($parts['query'])) {
-          $abs .= '?' . $parts['query'];
-        }
-        $returnUrl = $abs;
-      } elseif (isset($parts['scheme'], $parts['host']) && strcasecmp($parts['host'], $host) === 0) {
-        // Same-origin absolute URL
-        $returnUrl = $candidate;
-      }
-    }
-  }
-  // Fallback to session-stored absolute URL
-  if (!$returnUrl && !empty($_SESSION['post_login_return_to'])) {
-    $candidate = $_SESSION['post_login_return_to'];
-    $parts = @parse_url($candidate);
-    if ($parts && isset($parts['scheme'], $parts['host']) && strcasecmp($parts['host'], $host) === 0) {
-      $returnUrl = $candidate;
-    }
-  }
-  unset($_SESSION['post_login_return_to']);
+  // Get post-login return URL
+  $returnUrl = $_GET['return_to'] ?? null;
 
   if (!$returnUrl) {
     $returnUrl = $origin . '/index.php';
@@ -118,6 +82,6 @@ try {
   exit;
 } catch (Exception $e) {
   $_SESSION['error'] = 'OAuth callback failed: ' . $e->getMessage();
-  header('Location: ../../index.php');
+  header('Location: index.php');
   exit;
 }

@@ -133,12 +133,12 @@
         echo '<strong>Avatar:</strong><br><img src="' . htmlspecialchars($_SESSION['user']['gravatar']) . '" alt="Avatar" style="width: 60px; height: 60px; border-radius: 50%; margin-top: 10px;"><br>';
       }
       echo '</div>';
-      echo '<a href="api/auth/logout" class="logout-btn">Logout</a>';
+      echo '<a href="logout.php" class="logout-btn">Logout</a>';
       echo '<br><br>';
       echo '<a href="dashboard.php" class="login-btn">Go to Dashboard</a>';
     } else {
       // Show login options
-      echo '<a href="api/auth/login" class="login-btn">Login with ' . htmlspecialchars($providerName) . '</a>';
+      echo '<a href="login.php" class="login-btn">Login with ' . htmlspecialchars($providerName) . '</a>';
 
       // Show any error messages
       if (isset($_SESSION['error'])) {
@@ -158,7 +158,7 @@
       <p><strong>Setup Instructions:</strong></p>
       <ol style="text-align: left; font-size: 12px;">
         <li>Update <code>.env</code> with your CentralAuth endpoints and credentials</li>
-        <li>Configure your app's redirect URI to: <code>http://localhost/api/auth/callback</code></li>
+        <li>Configure your app's redirect URI to: <code>http://localhost/callback.php</code></li>
         <li>Make sure your web server is running on localhost</li>
       </ol>
     </div>

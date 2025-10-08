@@ -1,6 +1,0 @@
-RewriteEngine On
-
-# Handle API auth routes
-RewriteRule ^api/auth/login/?$ api/auth/login.php [L]
-RewriteRule ^api/auth/callback/?$ api/auth/callback.php [L]
-RewriteRule ^api/auth/logout/?$ api/auth/logout.php [L]
