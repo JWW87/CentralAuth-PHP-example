@@ -157,6 +157,7 @@ session_start();
     <div style="margin-top: 30px; font-size: 14px; color: #666;">
       <p><strong>Setup Instructions:</strong></p>
       <ol style="text-align: left; font-size: 12px;">
+        <li>Clone this repository: <code>git clone https://github.com/CentralAuth/CentralAuth-PHP-example.git</code></li>
         <li>Update <code>.env</code> with your CentralAuth endpoints and credentials</li>
         <li>Configure your app's redirect URI to: <code>http://localhost/callback.php</code></li>
         <li>Make sure your web server is running on localhost</li>

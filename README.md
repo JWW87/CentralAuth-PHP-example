@@ -1,6 +1,8 @@
 # CentralAuth OAuth Test Application
 
-A minimal OAuth 2.0 Authorization Code flow test harness using a custom `CentralAuth` provider (extends `league/oauth2-client`).
+A minimal OAuth 2.0 Authorization Code flow test using the custom `CentralAuth` provider (extends `league/oauth2-client`).
+
+This example uses the [CentralAuth provider](https://github.com/CentralAuth/CentralAuth-PHP-library) for the [PHP OAuth client library](https://github.com/thephpleague/oauth2-client).
 
 For complete CentralAuth configuration and API documentation, visit: **[https://docs.centralauth.com](https://docs.centralauth.com)**
 
