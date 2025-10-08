@@ -66,15 +66,12 @@ try {
   $_SESSION['success'] = 'Successfully logged in with CentralAuth!';
 
   // Get post-login return URL
-  $returnUrl = $_GET['return_to'] ?? null;
-
-  if (!$returnUrl) {
-    $returnUrl = $origin . '/index.php';
-  }
+  $returnUrl = $_GET['return_to'] ?? 'index.php';
 
   header('Location: ' . $returnUrl);
   exit;
 } catch (Exception $e) {
+  die("<pre>" . htmlspecialchars($e->getMessage()) . "</pre>");
   $_SESSION['error'] = 'OAuth callback failed: ' . $e->getMessage();
   header('Location: index.php');
   exit;

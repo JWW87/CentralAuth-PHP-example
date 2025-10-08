@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,12 +119,9 @@
     <p class="subtitle">Test your CentralAuth OAuth integration</p>
 
     <?php
-    session_start();
-
     // Load configuration to get provider name
     $config = require 'config.php';
-    $providerName = "CentralAuth";
-    // die(var_dump($_SESSION['user']));
+
     // Check if user is logged in
     if (isset($_SESSION['user'])) {
       echo '<div class="status success">Successfully logged in!</div>';
@@ -138,7 +138,7 @@
       echo '<a href="dashboard.php" class="login-btn">Go to Dashboard</a>';
     } else {
       // Show login options
-      echo '<a href="login.php" class="login-btn">Login with ' . htmlspecialchars($providerName) . '</a>';
+      echo '<a href="login.php" class="login-btn">Login with CentralAuth</a>';
 
       // Show any error messages
       if (isset($_SESSION['error'])) {
