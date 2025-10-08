@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "centralauth/oauth2-centralauth",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CentralAuth/CentralAuth-PHP-library.git",
-                "reference": "3be7f83b1bd19ef844c0c3b60bca55a777d0214d"
+                "reference": "22acbccbf94e8fad77ade78f1e695821d2807f23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CentralAuth/CentralAuth-PHP-library/zipball/3be7f83b1bd19ef844c0c3b60bca55a777d0214d",
-                "reference": "3be7f83b1bd19ef844c0c3b60bca55a777d0214d",
+                "url": "https://api.github.com/repos/CentralAuth/CentralAuth-PHP-library/zipball/22acbccbf94e8fad77ade78f1e695821d2807f23",
+                "reference": "22acbccbf94e8fad77ade78f1e695821d2807f23",
                 "shasum": ""
             },
             "require": {
@@ -43,9 +43,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CentralAuth/CentralAuth-PHP-library/issues",
-                "source": "https://github.com/CentralAuth/CentralAuth-PHP-library/tree/v1.0.1"
+                "source": "https://github.com/CentralAuth/CentralAuth-PHP-library/tree/v1.0.2"
             },
-            "time": "2025-10-08T12:41:51+00:00"
+            "time": "2025-10-08T13:19:21+00:00"
         },
         {
             "name": "graham-campbell/result-type",
