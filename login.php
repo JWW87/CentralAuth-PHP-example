@@ -25,7 +25,7 @@ try {
     'authorization_url' => $config['authorization_url'],
     'token_url' => $config['token_url'],
     'resource_owner_details_url' => $config['resource_owner_details_url'],
-    'domain' => $config['authorization_url']
+    'domain' => $config['redirect_uri']
   ]);
 
   // Generate a random state parameter for CSRF protection.
