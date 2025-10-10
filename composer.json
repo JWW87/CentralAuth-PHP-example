@@ -2,7 +2,7 @@
   "require": {
     "league/oauth2-client": "^2.8",
     "vlucas/phpdotenv": "^5.6",
-    "centralauth/oauth2-centralauth": "^1.0"
+    "centralauth/oauth2-centralauth": "^1.1"
   },
   "autoload": {
     "psr-4": {}
