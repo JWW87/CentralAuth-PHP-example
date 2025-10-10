@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'auth.php';
+require_once 'lib.php';
 $user = getUser();
 
 // Check if user is logged in
