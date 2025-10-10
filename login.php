@@ -1,8 +1,9 @@
 <?php
 session_start();
-$config = require 'config.php';
+require_once 'config.php';
 require_once 'lib.php';
-$provider = getProvider();
+$provider = get_provider();
+$config = get_config();
 
 try {
   $returnUrl = $_SERVER['HTTP_REFERER'] ?? null;

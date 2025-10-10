@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'lib.php';
-$user = getUser();
+$user = get_user();
 
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'lib.php';
-$user = getUser();
+$user = get_user();
 
 // Check if user is logged in
 if (!$user) {

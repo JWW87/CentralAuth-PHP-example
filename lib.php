@@ -1,14 +1,15 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'config.php';
 
 use CentralAuth\OAuth2\Client\Provider\CentralAuth; // custom provider
 use League\OAuth2\Client\Token\AccessToken;
 
 // Function to create and return the CentralAuth provider instance
-function getProvider()
+function get_provider()
 {
   // Load configuration
-  $config = require 'config.php';
+  $config = get_config();
   return new CentralAuth([
     'clientId' => $config['client_id'],
     'clientSecret' => $config['client_secret'],
@@ -21,10 +22,10 @@ function getProvider()
 }
 
 // Function to get the authenticated user's data from CentralAuth
-function getUser()
+function get_user()
 {
   if (!empty($_SESSION['access_token'])) {
-    $provider = getProvider();
+    $provider = get_provider();
     $accessToken = new AccessToken(['access_token' => $_SESSION['access_token']]);
     //Get the user info if we have an access token
     $resourceOwner = $provider->getResourceOwner($accessToken);

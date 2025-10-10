@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'lib.php';
-$provider = getProvider();
+$provider = get_provider();
 
 // Check if we have the required parameters
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
