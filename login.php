@@ -1,5 +1,6 @@
 <?php
 session_start();
+$config = require 'config.php';
 require_once 'lib.php';
 $provider = getProvider();
 
