@@ -1,11 +1,7 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php';
-
-use CentralAuth\OAuth2\Client\Provider\CentralAuth; // custom provider
-
-// Load configuration
-$config = require 'config.php';
+require_once 'auth.php';
+$provider = getProvider();
 
 // Check if we have the required parameters
 if (!isset($_GET['code']) || !isset($_GET['state'])) {
@@ -21,21 +17,7 @@ if (!isset($_SESSION['oauth_state']) || $_GET['state'] !== $_SESSION['oauth_stat
   exit;
 }
 
-// Get the provider that was used for login
-$provider_name = "CentralAuth";
-
 try {
-  // Recreate the CentralAuth provider configuration
-  $provider = new CentralAuth([
-    'clientId' => $config['client_id'],
-    'clientSecret' => $config['client_secret'],
-    'redirectUri' => $config['redirect_uri'],
-    'authorization_url' => $config['authorization_url'],
-    'token_url' => $config['token_url'],
-    'resource_owner_details_url' => $config['resource_owner_details_url'],
-    'domain' => $config['redirect_uri']
-  ]);
-
   // Build token request parameters
   $tokenParams = [
     'code' => $_GET['code']
@@ -53,15 +35,18 @@ try {
   if (!isset($userData['email']))
     throw new Exception('Invalid user info response: missing email');
 
-  // Store user data in session
-  $_SESSION['user'] = $userData;
+  // Store user data in session if you want to cache it. Remember that session hijacking protection is disabled if you do this.
+  // For production, consider storing minimal info in session and fetching fresh data as needed.
+  // $_SESSION['user'] = $userData;
+
+  // Store access token and expiration in session
   $_SESSION['access_token'] = $accessToken->getToken();
   $_SESSION['token_expires'] = $accessToken->getExpires();
 
   // Clean up OAuth session variables
   unset($_SESSION['oauth_state']);
   unset($_SESSION['oauth_provider']);
-  unset($_SESSION['pkce_code_verifier']); // Remove PKCE secret from session
+  unset($_SESSION['pkce_code_verifier']);
 
   $_SESSION['success'] = 'Successfully logged in with CentralAuth!';
 

@@ -1,14 +1,15 @@
 <?php
 session_start();
+require_once 'auth.php';
+$user = getUser();
 
 // Check if user is logged in
-if (!isset($_SESSION['user'])) {
+if (!$user) {
   $_SESSION['error'] = 'Please log in to access the dashboard';
   header('Location: index.php');
   exit;
 }
 
-$user = $_SESSION['user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -161,7 +162,7 @@ $user = $_SESSION['user'];
     <h1>CentralAuth Dashboard</h1>
     <div class="nav-buttons">
       <a href="index.php">Home</a>
-      <a href="/logout.php" class="logout">Logout</a>
+      <a href="logout.php" class="logout">Logout</a>
     </div>
   </div>
 

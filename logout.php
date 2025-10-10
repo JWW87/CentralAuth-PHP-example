@@ -5,6 +5,8 @@ session_start();
 session_unset();
 session_destroy();
 
+//Consider logging out session wide by calling the CentralAuth logout endpoint
+
 // Start a new session for the success message
 session_start();
 $_SESSION['success'] = 'Successfully logged out!';

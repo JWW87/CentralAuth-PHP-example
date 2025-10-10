@@ -1,11 +1,7 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php';
-
-use CentralAuth\OAuth2\Client\Provider\CentralAuth;
-
-// Load configuration
-$config = require 'config.php';
+require_once 'auth.php';
+$provider = getProvider();
 
 try {
   $returnUrl = $_SERVER['HTTP_REFERER'] ?? null;
@@ -16,17 +12,6 @@ try {
     $delimiter = (strpos($baseRedirect, '?') === false) ? '?' : '&';
     $redirectUri .= $delimiter . 'return_to=' . rawurlencode($returnUrl);
   }
-
-  // Initialize CentralAuth OAuth provider (dynamic redirectUri if return_to added)
-  $provider = new CentralAuth([
-    'clientId' => $config['client_id'],
-    'clientSecret' => $config['client_secret'],
-    'redirectUri' => $redirectUri,
-    'authorization_url' => $config['authorization_url'],
-    'token_url' => $config['token_url'],
-    'resource_owner_details_url' => $config['resource_owner_details_url'],
-    'domain' => $config['redirect_uri']
-  ]);
 
   // Generate a random state parameter for CSRF protection.
   // Embed an HMAC of return_to (optional) to prevent tampering if passed back; for simplicity we store in session.

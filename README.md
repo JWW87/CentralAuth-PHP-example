@@ -30,14 +30,14 @@ cp .env.example .env      # macOS/Linux
 6. Visit: `http://localhost/index.php`
 
 ## Environment Variables (.env)
-| Variable                         | Description                        |
-| -------------------------------- | ---------------------------------- |
-| OAUTH_CLIENT_ID                  | CentralAuth client ID              |
-| OAUTH_CLIENT_SECRET              | CentralAuth client secret          |
-| OAUTH_REDIRECT_URI               | Redirect URI (must match provider) |
-| OAUTH_AUTHORIZATION_URL          | Authorization/ Login endpoint      |
-| OAUTH_TOKEN_URL                  | Token / verification endpoint      |
-| OAUTH_RESOURCE_OWNER_DETAILS_URL | User info endpoint                 |
+| Variable                         | Description                                                                       |
+| -------------------------------- | --------------------------------------------------------------------------------- |
+| OAUTH_CLIENT_ID                  | CentralAuth client ID                                                             |
+| OAUTH_CLIENT_SECRET              | CentralAuth client secret                                                         |
+| OAUTH_REDIRECT_URI               | Redirect URI of your application                                                  |
+| OAUTH_AUTHORIZATION_URL          | Authorization/ Login endpoint (defaults to https://centralauth.com/login)         |
+| OAUTH_TOKEN_URL                  | Token / verification endpoint (defaults to https://centralauth.com/api/v1/verify) |
+| OAUTH_RESOURCE_OWNER_DETAILS_URL | User info endpoint (defaults to https://centralauth.com/api/v1/userinfo)          |
 
 ## Custom Provider Usage Example
 ```php

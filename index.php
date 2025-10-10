@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once 'auth.php';
+$user = getUser();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,18 +122,15 @@ session_start();
     <p class="subtitle">Test your CentralAuth OAuth integration</p>
 
     <?php
-    // Load configuration to get provider name
-    $config = require 'config.php';
-
     // Check if user is logged in
-    if (isset($_SESSION['user'])) {
+    if (isset($user)) {
       echo '<div class="status success">Successfully logged in!</div>';
       echo '<div class="user-info">';
       echo '<h3>User Information:</h3>';
-      echo '<strong>Email:</strong> ' . htmlspecialchars($_SESSION['user']['email'] ?? 'N/A') . '<br>';
-      echo '<strong>ID:</strong> ' . htmlspecialchars($_SESSION['user']['id'] ?? 'N/A') . '<br>';
-      if (isset($_SESSION['user']['gravatar'])) {
-        echo '<strong>Avatar:</strong><br><img src="' . htmlspecialchars($_SESSION['user']['gravatar']) . '" alt="Avatar" style="width: 60px; height: 60px; border-radius: 50%; margin-top: 10px;"><br>';
+      echo '<strong>Email:</strong> ' . htmlspecialchars($user['email'] ?? 'N/A') . '<br>';
+      echo '<strong>ID:</strong> ' . htmlspecialchars($user['id'] ?? 'N/A') . '<br>';
+      if (isset($user['gravatar'])) {
+        echo '<strong>Avatar:</strong><br><img src="' . htmlspecialchars($user['gravatar']) . '" alt="Avatar" style="width: 60px; height: 60px; border-radius: 50%; margin-top: 10px;"><br>';
       }
       echo '</div>';
       echo '<a href="logout.php" class="logout-btn">Logout</a>';
